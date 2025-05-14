@@ -1,0 +1,58 @@
+body {
+    background-color: #3d1e3d;
+    color: white;
+    overflow-x: hidden;
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    transition: 0.3s;
+    }
+
+.btn-lg:hover {
+    transform: scale(1.05);
+}
+
+.menu,
+.create-session,
+.load-session {
+    transition: 0.7s;
+    position: absolute;
+    top: 43%;
+    width: 100%;
+    text-align: center;
+}
+
+.session-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.create-session {
+    transform: translateX(-100%);
+}
+
+.load-session {
+    transform: translateX(100%);
+}
+
+/* Menú sale a la derecha */
+.slide-out-right {
+    transform: translateX(100%);
+}
+
+/* Menú sale a la izquierda */
+    .slide-out-left {
+    transform: translateX(-100%);
+}
+
+/* Llevar capa al medio */
+.slide-in {
+    transform: translateX(0);
+}
+

@@ -1,0 +1,14 @@
+DOCUMENTACION PROYECTO WEB
+API de las preguntas:
+https://www.freepublicapis.com/truth-or-dare-api
+
+Descripción:
+Juego WEB donde los jugadores jugaran al verdad o reto.
+Al iniciar, el juego te pedirá crear una sesión o abrir una sesión existente.
+
+En las sesiones puedes configurar el nº de usuarios a jugar (Máximo 6), filtrar las preguntas (p, p13 y r), el idioma del juego y permitir preguntas extra (yo nunca, paranoia y preferirías, verdad y reto son opciones que no se pueden quitar).
+
+Los jugadores serán representados en el juego y se ira pasando el turno de izquierda a derecha con algún indicador visual. El jugador podrá elegir el tipo de pregunta al jugador que el desee. En un campo de texto en el centro aparecerá la pregunta para que el jugador responda (Esta pensado para que responda en persona, no en el propio juego WEB).
+
+Para mostrar la preguntara se lanzará una llamada a la API con el filtro del idioma y de la edad, y devolverá la frase.
+
