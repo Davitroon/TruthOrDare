@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="question"> Question</h2>
+
+    <button onclick="cambiarPregunta()"> Cambiar pregunta </button>
+
+
+    <script>
+        const questionField = document.getElementById("question");
+        const apiUrl = 'https://api.truthordarebot.xyz/v1/truth';
+
+        // Función para obtener y mostrar la pregunta
+        function cambiarPregunta() {
+            questionField.innerHTML = "Changing question...";
+            p1 = fetch(apiUrl);
+            p1.then(tratarResp);
+        }
+
+        function tratarResp (resp) {
+            p2 = resp.json();
+            p2.then(tratarObj);
+        }
+
+        function tratarObj(json) {
+            questionField.innerHTML = json.question;
+            console.log(json);
+        }
+    </script>
+</body>
+</html>
