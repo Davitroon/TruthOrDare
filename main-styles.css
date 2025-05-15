@@ -1,0 +1,129 @@
+/* Página que ocupa el 100% de la pantalla */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #3d1e3d;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Botones */ 
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+}
+
+.btn-hover {
+    transition: 0.3s;
+}
+
+.btn-hover:hover {
+    transform: scale(1.05);
+}
+
+/* Capa de sesion guardada */
+.saved-session {
+    background-color: rgba(223, 223, 223, 0.6);
+    border-radius: 8px;
+    color: #1c1c1c;
+    width: 70%;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.saved-session:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(223, 223, 223, 0.726);
+    cursor: pointer;
+}
+
+.saved-session p {
+    margin: 4px 0;
+    font-family: 'Lucida Console', Monaco, monospace;
+}
+
+.selected-saved-session {
+    transform: scale(1.02) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(235, 235, 235, 0.829) !important;
+}
+
+.session-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 15px;
+}
+
+/* Capa de listas de sesiones guardadas */
+#saved-sessions {
+    background-color: rgba(119, 116, 116, 0.432);
+    border-radius: 5px;
+    margin: 0 auto;
+    max-height: 40vh;
+    overflow-y: scroll;
+    width: 70%;
+}
+
+#saved-sessions-list {
+    width: 100%;
+}
+
+.menu, .create-session, .load-session {
+    transition: 0.7s;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+/* Capa de menu de sesion, para guardar o cargar */
+.session-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 70%;
+    margin: 0 auto;
+}
+
+/* Menu principal */
+.menu {
+    top: 42%;
+}
+
+.create-session {
+    transform: translateX(-100%);
+    top: 28%;
+}
+
+.load-session {
+    transform: translateX(100%);
+    top: 27%;
+}
+
+/* Llevar fuera de la pantalla (derecha) */
+.slide-out-right {
+    transform: translateX(100%);
+}
+
+/* Llevar fuera de la pantalla (izquierda) */
+    .slide-out-left {
+    transform: translateX(-100%);
+}
+
+/* Llevar capa al medio */
+.slide-in {
+    transform: translateX(0);
+}
+
+/* Opcion deshabilitada */
+.disabled-button {
+    opacity: 40%;
+}

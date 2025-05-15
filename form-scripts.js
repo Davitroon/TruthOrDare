@@ -1,17 +1,16 @@
 let data = localStorage.getItem("data");
+let sessions = [] ;
+let selectedSesion = 0;
 
-let sessions = JSON.parse(data);
-
-if (sessions == null ) {
-    sessions = [] ;
+if (data) {
+    sessions = JSON.parse(data);
+    for (let session of sessions) {
+        addSessionHTML(session);
+    }
 
 } else {
-    for (let session of sessions) {
-        // modificar
-    }
+    document.getElementById('saved-sessions-list').innerHTML = "<p>There isn't any saved session!</p>";
 }
-
-
 
 // Mostrar capa crear sesion
 function showCreateSession() {
@@ -32,7 +31,7 @@ function goBack() {
     document.querySelector('.load-session').classList.remove('slide-in');
 }
 
-// Deshabilitar una opción
+// Deshabilitar un boton
 function alterButtonStatus(button) {
     button.classList.toggle("disabled-button");
 }
@@ -44,14 +43,12 @@ function validarFormulario() {
 
     // Validar el nombre de la sesión
     if (document.getElementById('name').value == '') {
-        console.log('Falta nombre');
         botonAdd.classList.add('disabled-button');
         return;
     }
 
     // Validar que haya nombres de jugadores
     if (document.getElementById('players-names').value == '') {
-        console.log('Falta nombres jugadores');
         botonAdd.classList.add('disabled-button');
         return;
     }
@@ -61,7 +58,6 @@ function validarFormulario() {
     const validPlayers = contarJugadores(playersNames);
     const numPlayers = parseInt(document.getElementById('players-num').value);
     if (validPlayers !== numPlayers) {
-        console.log('Jugadores incorrectos');
         botonAdd.classList.add('disabled-button');
         return;
     }
@@ -70,7 +66,6 @@ function validarFormulario() {
     for (let playerName of playersNames) {
         playerName = playerName.trim();
         if (playerName == '') {
-            console.log('nombres vacios');
             botonAdd.classList.add('disabled-button');
             return;
         }
@@ -81,7 +76,6 @@ function validarFormulario() {
     if (filterButtons[0].classList.contains('disabled-button') && 
         filterButtons[1].classList.contains('disabled-button') && 
         filterButtons[2].classList.contains('disabled-button') ) {
-            console.log('nigun filtro elegido');
             botonAdd.classList.add('disabled-button');
             return; 
     }
@@ -124,9 +118,10 @@ function addSession(addButton) {
     const session = {
         name: document.getElementById('name').value,
         language: document.getElementById('language').value,
-        playersNames: players,
+        players: players,
         filters: filters,
-        extraQuestions: extraQuestions
+        extraQuestions: extraQuestions,
+        creationDate: new Date().toLocaleDateString('en-GB')
     }
 
     sessions.push(session);
@@ -135,11 +130,86 @@ function addSession(addButton) {
 }
 
 
+// Meter una sesion al HTML
+function addSessionHTML(session) {
+    
+    const div = document.createElement('div');
+    div.classList.add('saved-session', 'position-relative');
+
+    // El metodo join() une todos los elementos de un array a un string, usando un separador personalizado
+    div.innerHTML = 
+        `<h3 class="fw-bold fs-4">${session.name}</h3> 
+        <div class="d-flex flex-column text-start">
+            <p><strong>Players:</strong> ${session.players.join(', ')}</p>
+            <p><strong>Language:</strong> ${session.language}</p>
+            <p><strong>Questions:</strong> ${session.extraQuestions.length == 0 ? "NA" : session.extraQuestions.join(', ')}</p>
+            <p><strong>Filters:</strong> ${session.filters.join(', ')}</p>
+            <p><strong>Creation date:</strong> ${session.creationDate}</p>
+        </div>`;
+
+    div.onclick = function () {
+        const oldSelected = document.querySelector('.selected-saved-session');
+
+        // Si ya habia un elemento elegido y no es el mismo
+        if (oldSelected && oldSelected != div) {
+            oldSelected.classList.remove('selected-saved-session');
+        }
+
+        // Alternar activado y no activado
+        div.classList.toggle('selected-saved-session');
+        if (div.classList.contains('selected-saved-session')) {
+            document.getElementById('play').classList.remove('disabled-button');
+            selectedSesion = sessions.indexOf(session);
+            console.log(selectedSesion);
+
+        } else {
+            document.getElementById('play').classList.add('disabled-button');
+        }
+    };
+
+    // Crear boton de borrar
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('btn', 'btn-danger', 'session-btn');
+    deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    deleteButton.onclick = function () {
+        sessions.splice(sessions.indexOf(session), 1);
+        document.getElementById('saved-sessions-list').removeChild(div);
+        localStorage.setItem('data', JSON.stringify(sessions));
+
+        if (sessions.length == 0) {
+            document.getElementById('saved-sessions-list').innerHTML = "<p>There isn't any saved session!</p>";
+            document.getElementById('btn-delete-sessions').style.display = 'none';
+        }
+    }
+
+    div.appendChild(deleteButton);
+    document.getElementById('saved-sessions-list').appendChild(div);
+    document.getElementById('btn-delete-sessions').style.display = '';
+}
+
+
+function deleteAllSessions() {
+    if (confirm("Are you sure you want to delete all your sessions?")) {
+        sessions = [];
+        localStorage.clear();
+        document.getElementById('saved-sessions-list').innerHTML = "<p>There isn't any saved session!</p>";
+        document.getElementById('btn-delete-sessions').style.display = 'none';
+    } 
+}
+
+
+// Cargar el juego mandando la sesion elegida
+function startGame() {
+    loadSession(sessions[selectedSesion]);
+    window.location.href = 'game.html';
+}
+
+
 // Agregar listeners a los campos necesarios del formulario para validarlo
-const campos = document.querySelectorAll('input, textarea, select, .filtro') ;
+const campos = document.querySelectorAll('input, textarea, select, .filter') ;
 
 for (let campo of campos) {
-    if (campo.classList.contains('filtro')) {
+    if (campo.classList.contains('filter')) {
         campo.addEventListener('click', validarFormulario);
     
     } else {

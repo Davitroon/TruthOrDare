@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Truth or Dare</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="estilos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="main-styles.css" rel="stylesheet">
 </head>
 <body>
 
   <div class="flex-grow-1">
-    <div class="container text-center pt-5">
+    <div class="container text-center pt-4">
       <img src="Recursos/logo.png" alt="Truth or Dare logo" style="width: 250px;" class="img-fluid">
     </div>
 
@@ -85,18 +86,24 @@
         </div>
         <div class="d-flex justify-content-center gap-3">
           <button class="btn btn-secondary btn-hover mt-3" onclick="goBack()">Go back</button>
-          <button id="add-play" class="btn btn-primary disabled-button btn-hover mt-3" onclick="addSession(this)">Add & Play</button>
+          <button id="add-play" class="btn btn-primary disabled-button btn-hover mt-3" onclick="addSession(this), startGame()", >Add & Play</button>
         </div>
         
       </div>
     </div>
 
     <!-- Capa de cargar sesión -->
-    <div class="load-session">
+    <div class="load-session d-flex">
       <div class="session-box text-white">
-      <h2>Cargar sesión</h2>
-      <p>Aquí irá el formulario o lista de sesiones guardadas...</p>
-      <button class="btn btn-light btn-hover mt-3" onclick="goBack()">Go back</button>
+        <h2>Load session</h2>
+        <div id="saved-sessions" class="py-4">
+          <div id="saved-sessions-list" class="d-flex flex-column align-items-center gap-4 pb-4"> </div>
+          <button id="btn-delete-sessions" class="btn btn-danger" onclick="deleteAllSessions()"> Delete all sessions</button>
+        </div>
+        <div class="d-flex justify-content-center gap-3">
+          <button class="btn btn-secondary btn-hover mt-3" onclick="goBack()">Go back</button>
+          <button id="play" class="btn btn-primary disabled-button btn-hover mt-3" onclick="startGame()">Play!</button>
+        </div>
       </div>
     </div>
   </div>
@@ -109,7 +116,8 @@
     </div>
   </div>
 
-    <script src="scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="game-scritps.js"></script>
+  <script src="form-scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
