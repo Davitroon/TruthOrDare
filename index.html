@@ -39,12 +39,12 @@
               <div class="mb-3">
                 <label for="language" class="form-label fw-bold">Language</label>
                 <select id="language" class="form-select">
+                  <option value="bn">বাংলা</option> <!-- Bengali -->
+                  <option value="de">Deutsch</option> <!-- German -->
                   <option value="en" selected>English</option>
-                  <option value="bn">Bengali</option>
-                  <option value="de">German</option>
-                  <option value="es">Spanish</option>
-                  <option value="fr">French</option>
-                  <option value="hi">Hindi</option>
+                  <option value="es">Español</option> <!-- Spanish -->
+                  <option value="fr">Français</option> <!-- French -->
+                  <option value="hi">हिन्दी</option> <!-- Hindi -->
                   <option value="tl">Tagalog</option>
                 </select>
               </div>
@@ -66,18 +66,18 @@
               <!-- Filtros -->
               <p class="fw-bold"> Filter <span class="text-danger"> * </span> </p>
               <div class="d-flex justify-content-center gap-4">
-                  <button id="filter-p" class="btn btn-success btn-hover btn-lg filtro" onclick="alterButtonStatus(this)"> Safe </button>
-                  <button id="filter-p13" class="btn btn-warning btn-hover btn-lg filtro" onclick="alterButtonStatus(this)"> 13+ </button>
-                  <button id="filter-r" class="btn btn-danger btn-hover btn-lg filtro disabled-button" onclick="alterButtonStatus(this)"> Spicy </button>
+                  <button id="pg" class="btn btn-success btn-hover btn-lg filter" onclick="alterButtonStatus(this)"> Safe </button>
+                  <button id="pg13" class="btn btn-warning btn-hover btn-lg filter" onclick="alterButtonStatus(this)"> 13+ </button>
+                  <button id="r" class="btn btn-danger btn-hover btn-lg filter disabled-button" onclick="alterButtonStatus(this)"> Spicy </button>
               </div>
               <br> 
 
               <!-- Preguntas extra-->
               <p class="fw-bold">Extra questions</p>
               <div class="d-flex flex-column gap-2">
-                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark"  onclick="alterButtonStatus(this)">What would you prefer?</button>
-                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark"  onclick="alterButtonStatus(this)">Paranoia question</button>
-                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark"  onclick="alterButtonStatus(this)">Never have I ever</button>
+                <button id="wyr" class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"  onclick="alterButtonStatus(this)">Would You Rather?</button>
+                <button id="paranoia" class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"  onclick="alterButtonStatus(this)">Paranoia Question</button>
+                <button id="nhie" class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"  onclick="alterButtonStatus(this)">Never Have I Ever</button>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="d-flex justify-content-center gap-3">
           <button class="btn btn-secondary btn-hover mt-3" onclick="goBack()">Go back</button>
-          <button id="add-play" class="btn btn-primary disabled-button btn-hover mt-3" onclick="window.location.href = 'juego.html'" >Add & Play</button>
+          <button id="add-play" class="btn btn-primary disabled-button btn-hover mt-3" onclick="addSession(this)">Add & Play</button>
         </div>
         
       </div>

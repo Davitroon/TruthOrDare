@@ -1,3 +1,18 @@
+let data = localStorage.getItem("data");
+
+let sessions = JSON.parse(data);
+
+if (sessions == null ) {
+    sessions = [] ;
+
+} else {
+    for (let session of sessions) {
+        // modificar
+    }
+}
+
+
+
 // Mostrar capa crear sesion
 function showCreateSession() {
     document.querySelector('.menu').classList.add('slide-out-right');
@@ -62,7 +77,7 @@ function validarFormulario() {
     }
 
     // Validar que no esten todos los filtros quitados
-    const filterButtons = document.querySelectorAll('.filtro');
+    const filterButtons = document.querySelectorAll('.filter');
     if (filterButtons[0].classList.contains('disabled-button') && 
         filterButtons[1].classList.contains('disabled-button') && 
         filterButtons[2].classList.contains('disabled-button') ) {
@@ -87,6 +102,36 @@ function contarJugadores(playersNames) {
 
     document.getElementById('players-names-txt').innerHTML = `Player names (${validPlayers}) <span class="text-danger"> * </span> `;
     return validPlayers;
+}
+
+
+function addSession(addButton) {
+    if (addButton.classList.contains('disabled-button')) return;
+
+    // Como ya habré validado que los nombres sean correctos, puedo hacer un split sin preocupaciones de nombres vacios
+    const players = document.getElementById('players-names').value.split(',');
+    const filters = [];
+    const extraQuestions = [];
+
+    for (let filter of document.querySelectorAll('.filter')) {
+        if (!filter.classList.contains('disabled-button')) filters.push(filter.id);
+    }
+
+    for (let extraQuestion of document.querySelectorAll('.extra-question')) {
+        if (!extraQuestion.classList.contains('disabled-button')) extraQuestions.push(extraQuestion.id);
+    }
+
+    const session = {
+        name: document.getElementById('name').value,
+        language: document.getElementById('language').value,
+        playersNames: players,
+        filters: filters,
+        extraQuestions: extraQuestions
+    }
+
+    sessions.push(session);
+    localStorage.setItem('data',JSON.stringify(sessions));
+    //window.location.href = 'juego.html';
 }
 
 
