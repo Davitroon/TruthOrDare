@@ -6,8 +6,22 @@
 #question-txt {
     background-color: rgba(255, 255, 255, 0.829);
     color: black;
-    min-width: 50%;
+    min-width: 85%;
     text-align: center;
     border-radius: 15px;
-    padding: 15px 0;
+    padding: 15px 15px;
+}
+
+#extra-questions {
+  display: flex;
+  gap: 10px;
+}
+
+#extra-questions .col {
+  flex: 1;
+  display: flex;
+}
+
+#extra-questions .btn {
+  flex: 1;
 }

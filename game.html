@@ -9,6 +9,15 @@
     <title>Game</title>
 </head>
 <body>
+    <!-- Antes de cargar la pagina, validar que se haya elegido una sesion -->
+    <script>
+    const session = JSON.parse(localStorage.getItem('currentSesion'));
+
+    if (session == null) {
+        alert("You can't play until you create or load a session!");
+        window.location.href = 'index.html';
+    }
+    </script>
 
     <div class="container text-center pt-4">
       <img src="Recursos/logo.png" alt="Truth or Dare logo" style="width: 150px;" class="img-fluid">
@@ -18,10 +27,27 @@
         <h2 id="question-txt"> Question </h2>
     </div>
     
+    <div class="container d-flex flex-column align-items-center gap-4 mt-5">
+        <div class="row text-center" style="width: 50%;">
+            <div class="col">
+                <button class="btn btn-primary btn-lg btn-hover" style="width: 80%;" onclick="loadQuestion('truth')"> Truth </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary btn-lg btn-hover" style="width: 80%;" onclick="loadQuestion('dare')"> Dare </button>
+            </div>
+        </div>
+        <div id="extra-questions" class="row text-center" style="width: 50%;">
 
-    <button onclick="cambiarPregunta()"> Cambiar pregunta </button>
+        </div>
+    </div>
 
-    <button onclick="window.location.href = 'index.html'"> Return to home </button>
+
+    
+
+    <div class="d-flex justify-content-center mt-5">
+        <button class="btn btn-secondary btn-hover" onclick="window.location.href = 'index.html'" style="width: 150px;"> Return to home </button>
+    </div>
+    
 
     <script src="game-scritps.js"></script>
 </body>

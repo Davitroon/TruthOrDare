@@ -1,16 +1,24 @@
-/* Página que ocupa el 100% de la pantalla */
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+html  {
+    overflow-x: hidden;
+    touch-action: pan-y;
 }
 
 body {
     background-color: #3d1e3d;
     color: white;
-    overflow-x: hidden;
+
 }
+
+#main {
+    height: 85.8vh;
+    min-height: 750px;
+}
+
+#footer {
+    height: 9vh;
+    min-height: 72px;
+}
+
 
 /* Botones */ 
 .btn-lg {
@@ -25,6 +33,11 @@ body {
 
 .btn-hover:hover {
     transform: scale(1.05);
+}
+
+/* Campo nombres jugadores */
+#players-names{
+    resize: none;
 }
 
 /* Capa de sesion guardada */
@@ -68,7 +81,8 @@ body {
     background-color: rgba(119, 116, 116, 0.432);
     border-radius: 5px;
     margin: 0 auto;
-    max-height: 40vh;
+    min-height: 300px;
+    height: 40vh;
     overflow-y: scroll;
     width: 70%;
 }
@@ -77,6 +91,7 @@ body {
     width: 100%;
 }
 
+/* Capas de los menús */
 .menu, .create-session, .load-session {
     transition: 0.7s;
     position: absolute;
@@ -89,23 +104,24 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 1rem;
-    width: 70%;
+    width: 80%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 /* Menu principal */
 .menu {
-    top: 42%;
+    top: 378px;
 }
 
 .create-session {
     transform: translateX(-100%);
-    top: 28%;
+    top: 252px;
 }
 
 .load-session {
     transform: translateX(100%);
-    top: 27%;
+    top: 243px;
 }
 
 /* Llevar fuera de la pantalla (derecha) */
@@ -114,7 +130,7 @@ body {
 }
 
 /* Llevar fuera de la pantalla (izquierda) */
-    .slide-out-left {
+.slide-out-left {
     transform: translateX(-100%);
 }
 
@@ -126,4 +142,68 @@ body {
 /* Opcion deshabilitada */
 .disabled-button {
     opacity: 40%;
+}
+
+
+/* Responsive para tables  */
+@media (max-width: 1024px) {
+    .filter{
+        /*flex-direction: column;*/
+        padding: 1.2rem;
+    }
+
+    .saved-session {
+        width: 90%;
+    }
+
+}
+
+/* Responsive para tables (mas pequeñas)  */
+@media (max-width: 767px) {
+    .filter{
+        /*flex-direction: column;*/
+        padding: 1rem 2.8rem;
+    }
+
+    #main {
+        min-height: 960px;
+    }   
+
+    #saved-sessions {
+        height: 500px;
+        width: 90%;
+    }
+}
+
+
+/* Responsive para móviles  */
+@media (max-width: 576px) {
+    #main {
+        min-height: 1150px;
+    }  
+
+    #saved-sessions {
+        width: 100%;
+        height: 600px;
+    }
+
+    .session-btn {
+        position: absolute;
+        top: 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .session-box {
+        width: 85%;
+        padding: 1rem;
+    }
+
+    #filters {
+        flex-direction: column;
+    }
+
+    .session-box {
+        margin-top: 30px;
+    }
 }
