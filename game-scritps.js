@@ -1,5 +1,6 @@
 const questionField = document.getElementById("question-txt");
-var apiUrl = 'https://api.truthordarebot.xyz/v1/';
+const showQuestionBtn = document.getElementById("show-question");
+const apiUrl = 'https://api.truthordarebot.xyz/v1/';
 var selectedQuestion;
 var currentPlayer;
 var players = [];
@@ -7,20 +8,20 @@ var players = [];
 
 // Función para obtener y mostrar la pregunta
 function loadQuestion() {
-    document.getElementById("show-question").disabled = true;
-    questionField.innerHTML = "Changing question...";
-    let p1;
+    showQuestionBtn.disabled = true;
+    questionField.textContent = "Changing question...";
+
+    let url = apiUrl + selectedQuestion.dataset.text;
 
     // Usar filtros
-    if (session.filters.length != 3) {
-        const randomFilter = session.filters[Math.floor(Math.random() * session.filters.length)].key;
-        p1 = fetch(apiUrl + selectedQuestion.dataset.text + `?rating=${randomFilter}`);    
-
-    } else {
-        p1 = fetch(apiUrl + selectedQuestion.dataset.text);
+    if (session.filters.length > 0 && session.filters.length < 3) {
+        const randomFilter = session.filters[Math.floor(Math.random() * session.filters.length)];
+        if (randomFilter && randomFilter.key) {
+            url += `?rating=${randomFilter.key}`;
+        }
     }
 
-    p1.then(tratarResp).catch(handleError);
+    fetch(url).then(tratarResp).catch(handleError);
 }
 
 
@@ -35,9 +36,8 @@ function takeObj(json) {
     // Cambiar el texto dependiendo del idioma
     if (session.language.key != 'en') {
         // Si no hay traduccion a esa pregunta, vuelve a cargar una pregunta diferente
-        console.log(json);
         if (json.translations[session.language.key] == null) {
-            loadQuestion(json.type);
+            loadQuestion();
 
         } else {
             questionField.innerHTML = players[currentPlayer] + "... " +  json.translations[session.language.key];
@@ -72,11 +72,11 @@ function takeObj(json) {
 
 // Validar que se haya elegido una pregunta y un jugador
 function validateOptions () {
-    if (selectedQuestion == null) {
-        document.getElementById("show-question").disabled = true;
+    if (!selectedQuestion) {
+        showQuestionBtn.disabled = true;
     
     } else {
-        document.getElementById("show-question").disabled = false;
+        showQuestionBtn.disabled = false;
     }
 }
 
@@ -130,7 +130,7 @@ if (session.extraQuestions.length != 0) {
 
 
 // Crear botones jugadores
-var contador = 0;
+let contador = 0;
 for (let nombre of session.players) {
     const div = document.createElement('div');
     div.classList.add('col', 'text-center');
@@ -146,5 +146,3 @@ currentPlayer = Math.floor(Math.random() * players.length);
 document.getElementById(`jugador${currentPlayer}`).classList.add("current-player");
 
 console.log(session);
-console.log(players)
-console.log(currentPlayer);

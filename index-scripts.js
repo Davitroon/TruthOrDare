@@ -59,7 +59,6 @@ function validarFormulario() {
         buttonAdd.disabled = true;
         return;
     }
-    
 
     // Validar que los nombres escritos no sean vacios
     const playersNames = document.getElementById('players-names').value.split(',');
@@ -117,18 +116,15 @@ function addSession(addButton) {
 
     for (let filter of document.querySelectorAll('.filter')) {
         if (!filter.classList.contains('disabled-button')) {
-            filters.push({
-                key: filter.id,
-                text: filter.dataset.text || filter.id
-            });
+            filters.push(filter.dataset.text);
         }
     }
 
     for (let extraQuestion of document.querySelectorAll('.extra-question')) {
         if (!extraQuestion.classList.contains('disabled-button')) {
             extraQuestions.push({
-                key: extraQuestion.id,
-                text: extraQuestion.dataset.text || extraQuestion.id
+                key: extraQuestion.dataset.text,
+                text: extraQuestion.textContent
             });
         }
     }
