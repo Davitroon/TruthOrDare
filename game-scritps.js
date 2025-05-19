@@ -21,12 +21,12 @@ function loadQuestion() {
         }
     }
 
-    fetch(url).then(tratarResp).catch(handleError);
+    fetch(url).then(takeResp).catch(handleError);
 }
 
 
 // Tratar respuesta de la API
-function tratarResp (resp) {
+function takeResp (resp) {
     resp.json().then(takeObj);
 }
 

@@ -2,6 +2,7 @@ let data = localStorage.getItem("data");
 let sessions = [] ;
 let selectedSesion = 0;
 
+// Cargar datos del local storage
 if (data) {
     sessions = JSON.parse(data);
     for (let session of sessions) {
@@ -45,7 +46,7 @@ function alterButtonStatus(button) {
 
 
 // Función para validar que el formulario se haya rellenado correctamente
-function validarFormulario() {
+function validateForm() {
     const buttonAdd = document.getElementById('add-play');
 
     // Validar el nombre de la sesión
@@ -90,7 +91,7 @@ function validarFormulario() {
 
 
 // Funcion que cuenta los jugadores con un nombre válido y los devuelve. Además, modifica el nº en el label de player names.
-function contarJugadores(playersNames) {
+function countPlayers(playersNames) {
     let validPlayers = 0;
     for (let i = 0; i < playersNames.length; i++) {
         let playerName = playersNames[i].trim();
@@ -116,7 +117,10 @@ function addSession(addButton) {
 
     for (let filter of document.querySelectorAll('.filter')) {
         if (!filter.classList.contains('disabled-button')) {
-            filters.push(filter.dataset.text);
+            filters.push({
+                key: filter.dataset.text,
+                text: filter.textContent
+            });
         }
     }
 
@@ -155,7 +159,6 @@ function addSessionHTML(session) {
     const div = document.createElement('div');
     div.classList.add('saved-session', 'position-relative');
 
-    // El metodo join() une todos los elementos de un array a un string, usando un separador personalizado
     div.innerHTML = 
         `<h3 class="fw-bold fs-4">${session.name}</h3> 
         <div class="d-flex flex-column text-start">
@@ -205,13 +208,18 @@ function addSessionHTML(session) {
     document.getElementById('btn-delete-sessions').style.display = '';
 }
 
+// Devolver un array de objetos como un string
 function formatTextList(items) {
     if (items.length == 0) return 'NA';
+    // map() devuelve varios arrays en uno solo y join() junta los elementos en un string
     return items.map(getText).join(', ');
 }
 
+
+// Obtener el texto de un elemento
 function getText(item) {
-    return item.text;
+    // trim() borra los espacios innecesarios de un texto
+    return item.text.trim();
 }
 
 
@@ -238,14 +246,14 @@ const campos = document.querySelectorAll('input, textarea, select, .filter') ;
 
 for (let campo of campos) {
     if (campo.classList.contains('filter')) {
-        campo.addEventListener('click', validarFormulario);
+        campo.addEventListener('click', validateForm);
     
     } else {
-        campo.addEventListener('input', validarFormulario);
+        campo.addEventListener('input', validateForm);
     }    
 }
 
 document.getElementById('players-names').addEventListener('input', function() {
     const playersNames = document.getElementById('players-names').value.split(',');
-    contarJugadores(playersNames);
+    countPlayers(playersNames);
 });
