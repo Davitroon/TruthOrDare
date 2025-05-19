@@ -7,6 +7,7 @@ var players = [];
 
 // Función para obtener y mostrar la pregunta
 function loadQuestion() {
+    document.getElementById("show-question").disabled = true;
     questionField.innerHTML = "Changing question...";
     let p1;
 
@@ -39,11 +40,13 @@ function takeObj(json) {
             loadQuestion(json.type);
 
         } else {
-            questionField.innerHTML = json.translations[session.language.key];
+            questionField.innerHTML = players[currentPlayer] + "... " +  json.translations[session.language.key];
+            nextTurn();
         }      
 
     } else {
         questionField.innerHTML = players[currentPlayer] + "... " + json.question;
+        nextTurn();
     }
 
     // Cambiar el color del texto dependiendo del rating
@@ -63,7 +66,6 @@ function takeObj(json) {
             questionField.style.color = "white";
         break;
     }
-    nextTurn();
     console.log(json);
 }
 
@@ -82,7 +84,6 @@ function validateOptions () {
 // Siguiente turno y cambiar jugador actual
 function nextTurn() {
     selectedQuestion.classList.remove('selected-question');
-    document.getElementById("show-question").disabled = true;
     document.getElementById(`jugador${currentPlayer}`).classList.remove("current-player");
     currentPlayer++;
     if (currentPlayer > session.players.length - 1) currentPlayer = 0;
