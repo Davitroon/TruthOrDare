@@ -12,10 +12,10 @@
 
   <div id="main">
     <div class="container text-center pt-4">
-      <img src="Recursos/logo.png" alt="Truth or Dare logo" style="width: 250px;" class="img-fluid">
+      <img src="Recursos/logo.png" alt="Truth or Dare logo" style="width: 250px;">
     </div>
 
-    <!-- Botones menú principal -->
+    <!-- Menú principal -->
     <div class="menu mt-5">
       <button class="btn btn-success btn-hover btn-lg me-3" onclick="showCreateSession()">Create Session</button>
       <button class="btn btn-primary btn-hover btn-lg ms-3" onclick="showLoadSession()">Load Session</button>
@@ -53,7 +53,7 @@
               <!-- Nombre jugadores-->
               <div class="mb-3">
                 <label id="players-names-txt" for="players-names" class="form-label fw-bold">Player names (0) <span class="text-danger"> * </span> </label>
-                <textarea id="players-names" class="form-control" rows="2" placeholder="Separated by commas (David, Samuel, Juan...)"></textarea>
+                <textarea id="players-names" class="form-control" rows="2" maxlength="80" placeholder="Separated by commas (David, Samuel, Juan...)"></textarea>
               </div>
             </div>
                           

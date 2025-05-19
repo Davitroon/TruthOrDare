@@ -71,6 +71,12 @@ function validarFormulario() {
         }
     }
 
+    // Validar el rango de jugadores (minimo 2 y maximo 6)
+    if (playersNames.length < 2 || playersNames.length > 6 ){
+        buttonAdd.disabled = true;
+        return;
+    }
+
     // Validar que no esten todos los filtros quitados
     const filterButtons = document.querySelectorAll('.filter');
     if (filterButtons[0].classList.contains('disabled-button') && 

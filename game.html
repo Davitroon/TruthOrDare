@@ -23,20 +23,24 @@
       <img src="Recursos/logo.png" alt="Truth or Dare logo" style="width: 150px;" class="img-fluid">
     </div>
 
-    <div id="question-div" class="d-flex justify-content-center">
+    <div id="question-div" class="d-flex justify-content-center mt-5">
         <h2 id="question-txt"> Question </h2>
     </div>
     
     <div class="container d-flex flex-column align-items-center gap-4 mt-5">
-        <div class="row text-center" style="width: 50%;">
+        <div id="questions" class="row text-center gap-3" style="width: 50%;">
             <div class="col">
-                <button class="btn btn-primary btn-lg btn-hover" style="width: 80%;" onclick="loadQuestion('truth')"> Truth </button>
+                <button class="btn btn-success btn-lg btn-hover question-option" data-text = "truth"; style="width: 80%;" onclick="selectQuestion(this)"> Truth </button>
             </div>
             <div class="col">
-                <button class="btn btn-primary btn-lg btn-hover" style="width: 80%;" onclick="loadQuestion('dare')"> Dare </button>
+                <button class="btn btn-danger btn-lg btn-hover question-option" data-text="dare" style="width: 80%;" onclick="selectQuestion(this)"> Dare </button>
             </div>
         </div>
-        <div id="extra-questions" class="row text-center" style="width: 50%;">
+        <div id="extra-questions" class="row gap-3" style="width: 50%;">
+
+        </div>
+
+        <div id="players" class="d-flex flex-wrap justify-content-center gap-4 mt-4 mb-5">
 
         </div>
     </div>
@@ -44,8 +48,9 @@
 
     
 
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-5 mb-5 gap-4">
         <button class="btn btn-secondary btn-hover" onclick="window.location.href = 'index.html'" style="width: 150px;"> Return to home </button>
+        <button id="show-question" class="btn btn-primary btn-hover" disabled onclick="loadQuestion()" style="width: 150px;"> Show question </button>
     </div>
     
 
