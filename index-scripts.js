@@ -192,7 +192,9 @@ function addSessionHTML(session) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('btn', 'btn-danger', 'session-btn');
     deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    deleteButton.onclick = function () {
+    deleteButton.onclick = function (event) {
+        // Stop propagation hace que si hay un evento en una capa superior, no se realize (en este caso elegir la session)
+        event.stopPropagation();
         sessions.splice(sessions.indexOf(session), 1);
         document.getElementById('saved-sessions-list').removeChild(div);
         localStorage.setItem('data', JSON.stringify(sessions));
@@ -200,7 +202,10 @@ function addSessionHTML(session) {
         if (sessions.length == 0) {
             document.getElementById('saved-sessions-list').innerHTML = "<p>There isn't any saved session!</p>";
             document.getElementById('btn-delete-sessions').style.display = 'none';
+            localStorage.clear();
         }
+
+        document.getElementById('play').disabled = true;
     }
 
     div.appendChild(deleteButton);
@@ -257,3 +262,6 @@ document.getElementById('players-names').addEventListener('input', function() {
     const playersNames = document.getElementById('players-names').value.split(',');
     countPlayers(playersNames);
 });
+
+
+console.log(sessions);
