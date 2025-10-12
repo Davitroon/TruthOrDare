@@ -1,13 +1,12 @@
-
-
+/* - Questions -  */
 #question-txt {
-    background-color: rgba(255, 255, 255, 0.829);
-    color: black;
-    min-width: 85%;
-    max-width: 95%;
-    text-align: center;
-    border-radius: 15px;
-    padding: 15px 15px;
+  background-color: rgba(255, 255, 255, 0.829);
+  color: black;
+  min-width: 85%;
+  max-width: 95%;
+  text-align: center;
+  border-radius: 15px;
+  padding: 15px 15px;
 }
 
 #extra-questions .col {
@@ -18,10 +17,6 @@
   opacity: 60%;
 }
 
-.player {
-  opacity: 60%;
-}
-
 .selected-question {
   transform: scale(1.10);
   opacity: 100%;
@@ -29,6 +24,17 @@
 
 .selected-question:hover {
   transform: scale(1.10);
+}
+
+/* - Players -  */
+.player {
+  opacity: 60%;
+}
+
+.player:hover {
+  cursor: default !important;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
 }
 
 .current-player {
@@ -43,10 +49,14 @@
   transform: none;
   background: yellow;
   border-color: rgb(102, 102, 31);
-  color: black;  
+  color: black;
 }
 
-/* Responsive para móviles  */
+/* 
+    =============================
+    Responsiv for phones  
+    =============================
+*/
 @media (max-width: 576px) {
   #questions {
     width: 100%;

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Truth or Dare</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <link href="main-styles.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="CSS/main-styles.css" rel="stylesheet">
 </head>
+
 <body>
 
   <div id="main">
@@ -23,14 +25,14 @@
       </div>
 
       <h3 class="mt-4"> Play with your friends! From 2 - 6 players</h3>
-      
+
     </div>
 
     <!-- Capa de crear sesión -->
     <div class="create-session">
       <div class="session-box text-white">
         <h2>Create Session</h2>
-          
+
         <div class="container">
           <div class="row">
 
@@ -40,7 +42,7 @@
                 <label for="name" class="form-label fw-bold">Session name <span class="text-danger"> * </span> </label>
                 <input type="text" id="name" class="form-control" placeholder="Enter session name">
               </div>
-                
+
               <!-- Idioma -->
               <div class="mb-3">
                 <label for="language" class="form-label fw-bold">Language</label>
@@ -54,30 +56,38 @@
                   <option value="tl">Tagalog</option>
                 </select>
               </div>
-                
+
               <!-- Nombre jugadores-->
               <div class="mb-3">
-                <label id="players-names-txt" for="players-names" class="form-label fw-bold">Player names (0) <span class="text-danger"> * </span> </label>
-                <textarea id="players-names" class="form-control" rows="2" maxlength="80" placeholder="Separated by commas (David, Samuel, Juan...)"></textarea>
+                <label id="players-names-txt" for="players-names" class="form-label fw-bold">Player names (0) <span
+                    class="text-danger"> * </span> </label>
+                <textarea id="players-names" class="form-control" rows="2" maxlength="80"
+                  placeholder="Separated by commas (David, Samuel, Juan...)"></textarea>
               </div>
             </div>
-                          
+
             <div class="col-md-6  text-start">
               <!-- Filtros -->
               <p class="fw-bold"> Filter <span class="text-danger"> * </span> </p>
               <div id="filters" class="d-flex justify-content-center gap-4">
-                  <button class="btn btn-success btn-hover btn-lg filter" data-text="pg" onclick="alterButtonStatus(this)">Safe</button>
-                  <button class="btn btn-warning btn-hover btn-lg filter" data-text="pg13" onclick="alterButtonStatus(this)">13+</button>
-                  <button class="btn btn-danger btn-hover btn-lg filter disabled-button" data-text="r" onclick="alterButtonStatus(this)">Spicy</button>
+                <button class="btn btn-success btn-hover btn-lg filter" data-text="pg"
+                  onclick="alterButtonStatus(this)">Safe</button>
+                <button class="btn btn-warning btn-hover btn-lg filter" data-text="pg13"
+                  onclick="alterButtonStatus(this)">13+</button>
+                <button class="btn btn-danger btn-hover btn-lg filter disabled-button" data-text="r"
+                  onclick="alterButtonStatus(this)">Spicy</button>
               </div>
-              <br> 
+              <br>
 
               <!-- Preguntas extra-->
               <p class="fw-bold">Extra questions</p>
               <div class="d-flex flex-column gap-2">
-                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question" data-text="wyr"  onclick="alterButtonStatus(this)">Would You Rather?</button>
-                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question" data-text="paranoia"  onclick="alterButtonStatus(this)">Paranoia Question</button>
-                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question" data-text="nhie"  onclick="alterButtonStatus(this)">Never Have I Ever</button>
+                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
+                  data-text="wyr" onclick="alterButtonStatus(this)">Would You Rather?</button>
+                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
+                  data-text="paranoia" onclick="alterButtonStatus(this)">Paranoia Question</button>
+                <button class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
+                  data-text="nhie" onclick="alterButtonStatus(this)">Never Have I Ever</button>
               </div>
             </div>
           </div>
@@ -85,9 +95,10 @@
         </div>
         <div class="d-flex justify-content-center gap-3">
           <button class="btn btn-secondary btn-hover mt-3" onclick="goBack()">Go back</button>
-          <button id="add-play" class="btn btn-primary btn-hover mt-3" disabled onclick="addSession(this)", >Add & Play</button>
+          <button id="add-play" class="btn btn-primary btn-hover mt-3" disabled onclick="addSession(this)">Add &
+            Play</button>
         </div>
-        
+
       </div>
     </div>
 
@@ -99,7 +110,8 @@
           <div id="saved-sessions-list" class="d-flex flex-column align-items-center gap-5 pb-4"> </div>
 
           <!-- Boton borrar todo-->
-          <button id="btn-delete-sessions" class="btn btn-danger" onclick="deleteAllSessions()"> Delete all sessions</button>
+          <button id="btn-delete-sessions" class="btn btn-danger" onclick="deleteAllSessions()"> Delete all
+            sessions</button>
         </div>
         <div class="d-flex justify-content-center gap-3">
           <button class="btn btn-secondary btn-hover mt-3" onclick="goBack()">Go back</button>
@@ -117,7 +129,9 @@
     </div>
   </div>
 
-  <script src="index-scripts.js"></script>
+  <script src="JS/index-scripts.js"></script>
+  <script src="JS/form-scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

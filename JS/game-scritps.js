@@ -26,13 +26,13 @@ function loadQuestion() {
 
 
 // Tratar respuesta de la API
-function takeResp (resp) {
+function takeResp(resp) {
     resp.json().then(takeObj);
 }
 
 
 // Tratar objeto de la respuesta
-function takeObj(json) { 
+function takeObj(json) {
     // Cambiar el texto dependiendo del idioma
     if (session.language.key != 'en') {
         // Si no hay traduccion a esa pregunta, vuelve a cargar una pregunta diferente
@@ -40,9 +40,9 @@ function takeObj(json) {
             loadQuestion();
 
         } else {
-            questionField.innerHTML = players[currentPlayer] + "... " +  json.translations[session.language.key];
+            questionField.innerHTML = players[currentPlayer] + "... " + json.translations[session.language.key];
             nextTurn();
-        }      
+        }
 
     } else {
         questionField.innerHTML = players[currentPlayer] + "... " + json.question;
@@ -51,30 +51,30 @@ function takeObj(json) {
 
     // Cambiar el color del texto dependiendo del rating
     switch (json.rating) {
-        case ('PG') :
+        case ('PG'):
             questionField.style.backgroundColor = "#28a745";
             questionField.style.color = "white";
-        break;
+            break;
 
-        case ('PG13') :
+        case ('PG13'):
             questionField.style.backgroundColor = "yellow";
             questionField.style.color = "black";
-        break;
+            break;
 
-        case ('R') :
+        case ('R'):
             questionField.style.backgroundColor = "red";
             questionField.style.color = "white";
-        break;
+            break;
     }
     console.log(json);
 }
 
 
 // Validar que se haya elegido una pregunta y un jugador
-function validateOptions () {
+function validateOptions() {
     if (!selectedQuestion) {
         showQuestionBtn.disabled = true;
-    
+
     } else {
         showQuestionBtn.disabled = false;
     }
@@ -83,7 +83,12 @@ function validateOptions () {
 
 // Siguiente turno y cambiar jugador actual
 function nextTurn() {
-    selectedQuestion.classList.remove('selected-question');
+
+    if (selectedQuestion) {
+        selectedQuestion.classList.remove('selected-question');
+        selectedQuestion = null;
+    }
+
     document.getElementById(`jugador${currentPlayer}`).classList.remove("current-player");
     currentPlayer++;
     if (currentPlayer > session.players.length - 1) currentPlayer = 0;
@@ -92,7 +97,7 @@ function nextTurn() {
 
 
 // Elegir una pregunta
-function selectQuestion (button) {
+function selectQuestion(button) {
     if (selectedQuestion == button) {
         button.classList.remove('selected-question');
         selectedQuestion = null;
@@ -122,7 +127,7 @@ if (session.extraQuestions.length != 0) {
         const div = document.createElement('div');
         div.classList.add('col', 'd-flex', 'justify-content-center');
 
-        div.innerHTML = `<button class="btn btn-lg btn-info btn-hover question-option" data-text="${extraQuestion.key}"  onclick="selectQuestion(this)"> ${extraQuestion.text} </button>`;
+        div.innerHTML = `<button type="button" class="btn btn-lg btn-info btn-hover question-option" data-text="${extraQuestion.key}"  onclick="selectQuestion(this)"> ${extraQuestion.text} </button>`;
 
         document.getElementById('extra-questions').appendChild(div);
     }
@@ -134,15 +139,16 @@ let contador = 0;
 for (let nombre of session.players) {
     const div = document.createElement('div');
     div.classList.add('col', 'text-center');
-    div.innerHTML = `<button id=jugador${contador} class="btn btn-lg btn-primary player" onclick="selectPlayer(this)"> ${nombre} </button>`;
+    div.innerHTML = `<button type="button" id=jugador${contador} class="btn btn-lg btn-primary player" onclick="selectPlayer(this)"> ${nombre} </button>`;
 
     document.getElementById('players').appendChild(div);
-    contador ++;
+    contador++;
 }
 
 // Asignar array de jugadores y empezar por un jugador al azar
 players = session.players;
 currentPlayer = Math.floor(Math.random() * players.length);
 document.getElementById(`jugador${currentPlayer}`).classList.add("current-player");
+questionField.textContent = players[currentPlayer] + "...";
 
 console.log(session);
