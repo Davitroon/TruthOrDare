@@ -11,12 +11,12 @@ function validateForm() {
     }
 
     // Validate that there are player names
-    if (document.getElementById('players-names').value == '') {
+    if (document.getElementById('player-names').value == '') {
         buttonAdd.disabled = true;
     }
 
     // Validate that the entered names are not empty
-    const playersNames = document.getElementById('players-names').value.split(',');
+    const playersNames = document.getElementById('player-names').value.split(',');
     for (let playerName of playersNames) {
         playerName = playerName.trim();
         if (playerName == '') {
@@ -52,7 +52,7 @@ function countPlayers(playersNames) {
         }
     }
 
-    document.getElementById('players-names-txt').innerHTML = `Player names (${validPlayers}) <span class="text-danger"> * </span> `;
+    document.getElementById('player-names-txt').innerHTML = `Player names (${validPlayers}) <span class="text-danger"> * </span> `;
     return validPlayers;
 }
 
@@ -68,7 +68,52 @@ for (let field of fields) {
     }
 }
 
-document.getElementById('players-names').addEventListener('input', function () {
-    const playersNames = document.getElementById('players-names').value.split(',');
+// Update the player count when writing
+document.getElementById('player-names').addEventListener('input', function () {
+    const playersNames = document.getElementById('player-names').value.split(',');
     countPlayers(playersNames);
+});
+
+// Save session and start game when creating a session
+document.getElementById("create-session-form").addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const filters = [];
+    const extraQuestions = [];
+
+    for (let filter of document.querySelectorAll('.filter')) {
+        if (!filter.classList.contains('disabled-button')) {
+            filters.push({
+                key: filter.dataset.text,
+                text: filter.textContent
+            });
+        }
+    }
+
+    for (let extraQuestion of document.querySelectorAll('.extra-question')) {
+        if (!extraQuestion.classList.contains('disabled-button')) {
+            extraQuestions.push({
+                key: extraQuestion.dataset.text,
+                text: extraQuestion.textContent
+            });
+        }
+    }
+
+    const session = {
+        name: formData.get("name"),
+        language: {
+            key: formData.get("language"),
+            text: document.getElementById('language').selectedOptions[0].text
+        },
+        players: formData.get("player-names").split(','),
+        filters: filters,
+        extraQuestions: extraQuestions,
+        creationDate: new Date().toLocaleDateString('en-GB')
+    }
+    sessions.push(session);
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+    selectedSesion = sessions.indexOf(session);
+    startGame();
+
 });

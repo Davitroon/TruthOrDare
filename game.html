@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- Antes de cargar la pagina, validar que se haya elegido una sesion -->
+    <!-- Validate there's an existing session -->
     <script>
         const session = JSON.parse(localStorage.getItem('currentSesion'));
 
@@ -29,36 +29,40 @@
         <h2 id="question-txt"> </h2>
     </div>
 
+    <!-- Questions -->
     <div class="container d-flex flex-column align-items-center gap-4 mt-3">
         <div id="questions" class="row row-cols-2 g-2 w-100 justify-content-center px-2">
             <div class="col-5 text-center">
                 <button class="btn btn-success btn-lg btn-hover question-option" data-text="truth" ; style="width: 80%;"
-                    onclick="selectQuestion(this)"> Truth </button>
+                    onclick="selectQuestion(this)" title="Choose truth question"> Truth </button>
             </div>
             <div class="col-5 text-center">
                 <button class="btn btn-danger btn-lg btn-hover question-option" data-text="dare" style="width: 80%;"
-                    onclick="selectQuestion(this)"> Dare </button>
+                    onclick="selectQuestion(this)" title="Choose dare"> Dare </button>
             </div>
         </div>
         <div id="extra-questions" class="row gap-3">
 
         </div>
 
+        <!-- Players -->
         <fieldset class="border border-5 border-light rounded px-5 mb-5 bg-secondary">
             <legend class="float-none w-auto px-3 fs-2 text-center text-white fw-bold">
                 Players
             </legend>
             <div id="players" class="d-flex flex-wrap justify-content-center gap-4 mt-3 mb-5">
-                <!-- Contenido aquí -->
+
             </div>
         </fieldset>
     </div>
 
+    <!-- Buttons -->
     <div class="d-flex justify-content-center mt-3 mb-5 gap-4">
-        <button class="btn btn-secondary btn-hover" onclick="window.location.href = 'index.html'" style="width: 150px;">
+        <button class="btn btn-secondary btn-hover" onclick="window.location.href = 'index.html'" style="width: 150px;"
+            title="Return to home page">
             Return to home </button>
         <button id="show-question" class="btn btn-primary btn-hover" disabled onclick="loadQuestion()"
-            style="width: 150px;"> Show question </button>
+            style="width: 150px;" title="Show the question"> Show question </button>
     </div>
     <script src="JS/game-scritps.js"></script>
 </body>

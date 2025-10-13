@@ -31,10 +31,10 @@
   opacity: 60%;
 }
 
-.player:hover {
+.player:hover, .player:active {
   cursor: default !important;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
 }
 
 .current-player {
@@ -45,11 +45,11 @@
   color: black;
 }
 
-.current-player:hover {
+.current-player:hover, .current-player:active {
   transform: none;
-  background: yellow;
-  border-color: rgb(102, 102, 31);
-  color: black;
+  background: yellow !important;
+  border-color: rgb(102, 102, 31) !important;
+  color: black !important;
 }
 
 /* 

@@ -6,14 +6,14 @@ var currentPlayer;
 var players = [];
 
 
-// Función para obtener y mostrar la pregunta
+// Request the API a question
 function loadQuestion() {
     showQuestionBtn.disabled = true;
     questionField.textContent = "Changing question...";
 
     let url = apiUrl + selectedQuestion.dataset.text;
 
-    // Usar filtros
+    // Use filters
     if (session.filters.length > 0 && session.filters.length < 3) {
         const randomFilter = session.filters[Math.floor(Math.random() * session.filters.length)];
         if (randomFilter && randomFilter.key) {
@@ -25,17 +25,16 @@ function loadQuestion() {
 }
 
 
-// Tratar respuesta de la API
+// Take promise from the API
 function takeResp(resp) {
     resp.json().then(takeObj);
 }
 
 
-// Tratar objeto de la respuesta
+// Take data from the promise
 function takeObj(json) {
-    // Cambiar el texto dependiendo del idioma
     if (session.language.key != 'en') {
-        // Si no hay traduccion a esa pregunta, vuelve a cargar una pregunta diferente
+        // If there's no custom language...
         if (json.translations[session.language.key] == null) {
             loadQuestion();
 
@@ -49,7 +48,7 @@ function takeObj(json) {
         nextTurn();
     }
 
-    // Cambiar el color del texto dependiendo del rating
+    // Change color based on rating
     switch (json.rating) {
         case ('PG'):
             questionField.style.backgroundColor = "#28a745";
@@ -70,7 +69,7 @@ function takeObj(json) {
 }
 
 
-// Validar que se haya elegido una pregunta y un jugador
+// Validate that there's a question chosen
 function validateOptions() {
     if (!selectedQuestion) {
         showQuestionBtn.disabled = true;
@@ -81,7 +80,7 @@ function validateOptions() {
 }
 
 
-// Siguiente turno y cambiar jugador actual
+// Pass turn
 function nextTurn() {
 
     if (selectedQuestion) {
@@ -96,7 +95,7 @@ function nextTurn() {
 }
 
 
-// Elegir una pregunta
+// Choose an anwser
 function selectQuestion(button) {
     if (selectedQuestion == button) {
         button.classList.remove('selected-question');
@@ -114,38 +113,38 @@ function selectQuestion(button) {
 }
 
 
-// Manejar errores al consultar la API
-function handleError(error) {
+// Handle error from the API call
+function handleError() {
     questionField.innerHTML = "<p class='fw-bold text-danger'>You're going to fast!</p>";
     questionField.style.backgroundColor = "white";
 }
 
 
-// Crear botones preguntas extras
+// Add extra questions buttons dynamically
 if (session.extraQuestions.length != 0) {
     for (let extraQuestion of session.extraQuestions) {
         const div = document.createElement('div');
         div.classList.add('col', 'd-flex', 'justify-content-center');
 
-        div.innerHTML = `<button type="button" class="btn btn-lg btn-info btn-hover question-option" data-text="${extraQuestion.key}"  onclick="selectQuestion(this)"> ${extraQuestion.text} </button>`;
+        div.innerHTML = `<button type="button" class="btn btn-lg btn-info btn-hover question-option" data-text="${extraQuestion.key}"  onclick="selectQuestion(this)" title="Choose ${extraQuestion.text}"> ${extraQuestion.text} </button>`;
 
         document.getElementById('extra-questions').appendChild(div);
     }
 }
 
 
-// Crear botones jugadores
+// Add player names dynamically
 let contador = 0;
 for (let nombre of session.players) {
     const div = document.createElement('div');
     div.classList.add('col', 'text-center');
-    div.innerHTML = `<button type="button" id=jugador${contador} class="btn btn-lg btn-primary player" onclick="selectPlayer(this)"> ${nombre} </button>`;
+    div.innerHTML = `<div id=jugador${contador} class="btn btn-lg btn-primary player"> ${nombre} </div>`;
 
     document.getElementById('players').appendChild(div);
     contador++;
 }
 
-// Asignar array de jugadores y empezar por un jugador al azar
+// Start game
 players = session.players;
 currentPlayer = Math.floor(Math.random() * players.length);
 document.getElementById(`jugador${currentPlayer}`).classList.add("current-player");

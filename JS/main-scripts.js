@@ -1,10 +1,10 @@
-let data = localStorage.getItem("data");
+let sessionsData = localStorage.getItem("sessions");
 let sessions = [];
 let selectedSesion = 0;
 
-// - Load data from localStorage -
-if (data) {
-    sessions = JSON.parse(data);
+// - Load sessions data from localStorage -
+if (sessionsData) {
+    sessions = JSON.parse(sessionsData);
     for (let session of sessions) {
         addSessionHTML(session);
     }
@@ -68,10 +68,11 @@ function addSessionHTML(session) {
         <div class="d-flex flex-column text-start">
             <p><strong>Players:</strong> ${session.players.join(', ')}</p>
             <p><strong>Language:</strong> ${session.language.text}</p>
-            <p><strong>Questions:</strong> ${formatTextList(session.extraQuestions)}</p>
+            <p><strong>Extra questions:</strong> ${formatTextList(session.extraQuestions)}</p>
             <p><strong>Filters:</strong> ${formatTextList(session.filters)}</p>
             <p><strong>Creation date:</strong> ${session.creationDate}</p>
         </div>`;
+    div.title = `Select ${session.name} session`;
 
     // Function to select the session in the sessions list
     div.onclick = function () {
@@ -95,12 +96,13 @@ function addSessionHTML(session) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('btn', 'btn-danger', 'session-btn');
     deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    deleteButton.title = "Delete this session"
     deleteButton.onclick = function (event) {
         // Prevent selecting the session when clicking on the delete button
         event.stopPropagation();
         sessions.splice(sessions.indexOf(session), 1);
         document.getElementById('saved-sessions-list').removeChild(div);
-        localStorage.setItem('data', JSON.stringify(sessions));
+        localStorage.setItem('sessions', JSON.stringify(sessions));
 
         if (sessions.length == 0) {
             document.getElementById('saved-sessions-list').innerHTML = "<p>There isn't any saved session!</p>";
@@ -158,7 +160,3 @@ function startGame() {
     localStorage.setItem('currentSesion', JSON.stringify(sessions[selectedSesion]));
     window.location.href = 'game.html';
 }
-
-
-
-
