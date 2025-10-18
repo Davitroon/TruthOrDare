@@ -1,154 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Truth or Dare</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link href="CSS/main-styles.css" rel="stylesheet" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Truth or Dare</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-  <link href="CSS/main-styles.css" rel="stylesheet">
-</head>
+	<body>
+		<div id="main">
+			<div class="container text-center pt-4">
+				<img
+					src="Resources/logo.png"
+					alt="Truth or Dare logo"
+					style="width: 250px"
+				/>
+			</div>
 
-<body>
+			<!-- Main menu -->
+			<div class="menu mt-5">
+				<div>
+					<button
+						class="btn btn-success btn-hover btn-lg me-3"
+						onclick="showCreateSession()"
+						title="Create a new session"
+					>
+						Create Session
+					</button>
+					<button
+						class="btn btn-primary btn-hover btn-lg ms-3"
+						onclick="showLoadSession()"
+						title="Load a saved session"
+					>
+						Load Session
+					</button>
+				</div>
 
-  <div id="main">
-    <div class="container text-center pt-4">
-      <img src="Resources/logo.png" alt="Truth or Dare logo" style="width: 250px;">
-    </div>
+				<h3 class="mt-4">Play with your friends! From 2 - 6 players</h3>
+			</div>
 
-    <!-- Main menu -->
-    <div class="menu mt-5">
-      <div>
-        <button class="btn btn-success btn-hover btn-lg me-3" onclick="showCreateSession()"
-          title="Create a new session">Create Session</button>
-        <button class="btn btn-primary btn-hover btn-lg ms-3" onclick="showLoadSession()"
-          title="Load a saved session">Load Session</button>
-      </div>
+			<!-- Create session layer -->
+			<form id="create-session-form">
+				<div class="create-session">
+					<div class="session-box text-white">
+						<h2>Create Session</h2>
 
-      <h3 class="mt-4"> Play with your friends! From 2 - 6 players</h3>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-6 text-start">
+									<!-- Session name -->
+									<div class="mb-3">
+										<label for="name" class="form-label fw-bold"
+											>Session name <span class="text-danger"> * </span>
+										</label>
+										<input
+											type="text"
+											id="name"
+											name="name"
+											class="form-control"
+											placeholder="Enter session name"
+										/>
+									</div>
 
-    </div>
+									<!-- Session language -->
+									<div class="mb-3">
+										<label for="language" class="form-label fw-bold"
+											>Language</label
+										>
+										<select id="language" name="language" class="form-select">
+											<option value="bn">বাংলা</option>
+											<!-- Bengali -->
+											<option value="de">Deutsch</option>
+											<!-- German -->
+											<option value="en" selected>English</option>
+											<option value="es">Español</option>
+											<!-- Spanish -->
+											<option value="fr">Français</option>
+											<!-- French -->
+											<option value="hi">हिन्दी</option>
+											<!-- Hindi -->
+											<option value="tl">Tagalog</option>
+										</select>
+									</div>
 
-    <!-- Create session layer -->
-    <form id="create-session-form">
-      <div class="create-session">
-        <div class="session-box text-white">
-          <h2>Create Session</h2>
+									<!-- Player names-->
+									<div class="mb-3">
+										<label
+											id="player-names-txt"
+											for="player-names"
+											class="form-label fw-bold"
+											>Player names (0) <span class="text-danger"> * </span>
+										</label>
+										<textarea
+											id="player-names"
+											name="player-names"
+											class="form-control"
+											rows="2"
+											maxlength="80"
+											placeholder="Separated by commas (David, Samuel, Juan...)"
+										></textarea>
+									</div>
+								</div>
 
-          <div class="container">
-            <div class="row">
+								<div class="col-md-6 text-start">
+									<!-- Filters -->
+									<p class="fw-bold">
+										Filter <span class="text-danger"> * </span>
+									</p>
+									<div id="filters" class="d-flex justify-content-center gap-4">
+										<button
+											type="button"
+											class="btn btn-success btn-hover btn-lg filter"
+											name="filter1"
+											data-text="pg"
+											onclick="alterButtonStatus(this)"
+											title="Alternate safe questions"
+										>
+											Safe
+										</button>
+										<button
+											type="button"
+											class="btn btn-warning btn-hover btn-lg filter"
+											name="filter2"
+											data-text="pg13"
+											onclick="alterButtonStatus(this)"
+											title="Alternate 13+ questions"
+										>
+											13+
+										</button>
+										<button
+											type="button"
+											class="btn btn-danger btn-hover btn-lg filter disabled-button"
+											name="filter3"
+											data-text="r"
+											onclick="alterButtonStatus(this)"
+											title="Alternate spicy questions"
+										>
+											Spicy
+										</button>
+									</div>
+									<br />
 
-              <div class="col-md-6 text-start">
-                <!-- Session name -->
-                <div class="mb-3">
-                  <label for="name" class="form-label fw-bold">Session name <span class="text-danger"> * </span>
-                  </label>
-                  <input type="text" id="name" name="name" class="form-control" placeholder="Enter session name">
-                </div>
+									<!-- Extra questions-->
+									<p class="fw-bold">Extra questions</p>
+									<div class="d-flex flex-column gap-2">
+										<button
+											type="button"
+											class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
+											name="question1"
+											data-text="wyr"
+											onclick="alterButtonStatus(this)"
+											title="Alternate Would you rather"
+										>
+											Would You Rather?
+										</button>
+										<button
+											type="button"
+											class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
+											name="question2"
+											data-text="paranoia"
+											onclick="alterButtonStatus(this)"
+											title="Alternate Paranoia questions"
+										>
+											Paranoia Question
+										</button>
+										<button
+											type="button"
+											class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
+											name="question3"
+											data-text="nhie"
+											onclick="alterButtonStatus(this)"
+											title="Alternate Never have I ever"
+										>
+											Never Have I Ever
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Buttons -->
+						<div class="d-flex justify-content-center gap-3">
+							<button
+								type="button"
+								class="btn btn-secondary btn-hover mt-3"
+								onclick="goBack()"
+								title="Return to main menu"
+							>
+								Go back
+							</button>
+							<button
+								type="submit"
+								id="add-play"
+								class="btn btn-primary btn-hover mt-3"
+								disabled
+								title="Save session and play"
+							>
+								Add & Play
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
 
-                <!-- Session language -->
-                <div class="mb-3">
-                  <label for="language" class="form-label fw-bold">Language</label>
-                  <select id="language" name="language" class="form-select">
-                    <option value="bn">বাংলা</option> <!-- Bengali -->
-                    <option value="de">Deutsch</option> <!-- German -->
-                    <option value="en" selected>English</option>
-                    <option value="es">Español</option> <!-- Spanish -->
-                    <option value="fr">Français</option> <!-- French -->
-                    <option value="hi">हिन्दी</option> <!-- Hindi -->
-                    <option value="tl">Tagalog</option>
-                  </select>
-                </div>
+			<!-- Load session layer -->
+			<div class="load-session">
+				<div class="session-box text-white">
+					<h2>Load session</h2>
+					<div id="saved-sessions" class="py-4">
+						<div
+							id="saved-sessions-list"
+							class="d-flex flex-column align-items-center gap-5 pb-4"
+						></div>
 
-                <!-- Player names-->
-                <div class="mb-3">
-                  <label id="player-names-txt" for="player-names" class="form-label fw-bold">Player names (0) <span
-                      class="text-danger"> * </span> </label>
-                  <textarea id="player-names" name="player-names" class="form-control" rows="2" maxlength="80"
-                    placeholder="Separated by commas (David, Samuel, Juan...)"></textarea>
-                </div>
-              </div>
+						<!-- Buttons-->
+						<button
+							id="btn-delete-sessions"
+							class="btn btn-danger"
+							onclick="deleteAllSessions()"
+							title="Delete all saved sessions"
+						>
+							Delete all sessions
+						</button>
+					</div>
+					<div class="d-flex justify-content-center gap-3">
+						<button
+							class="btn btn-secondary btn-hover mt-3"
+							onclick="goBack()"
+							title="Return to main menu"
+						>
+							Go back
+						</button>
+						<button
+							id="play"
+							class="btn btn-primary btn-hover mt-3"
+							disabled
+							onclick="startGame()"
+							title="Choose session and play"
+						>
+							Play!
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-              <div class="col-md-6  text-start">
-                <!-- Filters -->
-                <p class="fw-bold"> Filter <span class="text-danger"> * </span> </p>
-                <div id="filters" class="d-flex justify-content-center gap-4">
-                  <button type="button" class="btn btn-success btn-hover btn-lg filter" name="filter1" data-text="pg"
-                    onclick="alterButtonStatus(this)" title="Alternate safe questions">Safe</button>
-                  <button type="button" class="btn btn-warning btn-hover btn-lg filter" name="filter2" data-text="pg13"
-                    onclick="alterButtonStatus(this)" title="Alternate 13+ questions">13+</button>
-                  <button type="button" class="btn btn-danger btn-hover btn-lg filter disabled-button" name="filter3" data-text="r"
-                    onclick="alterButtonStatus(this)" title="Alternate spicy questions">Spicy</button>
-                </div>
-                <br>
+		<!-- Footer -->
+		<div id="footer" class="bg-dark text-white text-center py-3 mt-5">
+			<div class="container">
+				<p class="mb-0">© 2025 Truth or Dare. All rights reserved.</p>
+				<small>Created by David F.</small>
+			</div>
+		</div>
 
-                <!-- Extra questions-->
-                <p class="fw-bold">Extra questions</p>
-                <div class="d-flex flex-column gap-2">
-                  <button type="button" class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
-                    name="question1" data-text="wyr" onclick="alterButtonStatus(this)"
-                    title="Alternate Would you rather">Would You
-                    Rather?</button>
-                  <button type="button" class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
-                    name="question2" data-text="paranoia" onclick="alterButtonStatus(this)"
-                    title="Alternate Paranoia questions">Paranoia
-                    Question</button>
-                  <button type="button" class="btn btn-info btn-hover disabled-button border border-3 border-dark extra-question"
-                    name="question3" data-text="nhie" onclick="alterButtonStatus(this)"
-                    title="Alternate Never have I ever">Never Have I
-                    Ever</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!-- Buttons -->
-          <div class="d-flex justify-content-center gap-3">
-            <button type="button" class="btn btn-secondary btn-hover mt-3" onclick="goBack()" title="Return to main menu">Go
-              back</button>
-            <button type="submit" id="add-play" class="btn btn-primary btn-hover mt-3" disabled
-              title="Save session and play">Add &
-              Play</button>
-          </div>
-
-        </div>
-      </div>
-    </form>
-
-    <!-- Load session layer -->
-    <div class="load-session ">
-      <div class="session-box text-white">
-        <h2>Load session</h2>
-        <div id="saved-sessions" class="py-4">
-          <div id="saved-sessions-list" class="d-flex flex-column align-items-center gap-5 pb-4"> </div>
-
-          <!-- Buttons-->
-          <button id="btn-delete-sessions" class="btn btn-danger" onclick="deleteAllSessions()"
-            title="Delete all saved sessions"> Delete all
-            sessions</button>
-        </div>
-        <div class="d-flex justify-content-center gap-3">
-          <button class="btn btn-secondary btn-hover mt-3" onclick="goBack()" title="Return to main menu">Go
-            back</button>
-          <button id="play" class="btn btn-primary btn-hover mt-3" disabled onclick="startGame()"
-            title="Choose session and play">Play!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div id="footer" class="bg-dark text-white text-center py-3 mt-5">
-    <div class="container">
-      <p class="mb-0">© 2025 Truth or Dare. All rights reserved.</p>
-      <small>Created by David F.</small>
-    </div>
-  </div>
-
-  <script src="JS/main-scripts.js"></script>
-  <script src="JS/form-scripts.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+		<script src="JS/main-scripts.js"></script>
+		<script src="JS/form-scripts.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
 </html>
