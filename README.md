@@ -4,12 +4,12 @@
 ---
 
 ## 📚 Table of Contents
-- [📝 Description](#-description)
-- [🧠 Technologies](#-technologies)
-- [⚙️ Installation](#️-installation)
-- [🕹️ How to Play](#-how-to-play)
-- [💾 Game Architecture](#-game-architecture)
-- [🔗 API](#-api)
+- [📝 Description](#-description "Learn more about the game's concept and purpose")
+- [🧠 Technologies](#-technologies "See which technologies were used to build the project")
+- [⚙️ Installation](#️-installation "Instructions to install and run the project locally")
+- [🕹️ How to Play](#-how-to-play "Step-by-step guide on how to play the game")
+- [💾 Game Architecture](#-game-architecture "Understand the structure and logic behind the game")
+- [🔗 API](#-api "Information about the Truth or Dare API used in this project")
 
 ---
 
@@ -35,7 +35,8 @@ git clone https://github.com/Davitroon/TruthOrDare.git
 ```
 ---
 
-## 🕹️ How to Play
+<h2 id="-how-to-play">🕹️ How to Play</h2>
+
 ![Menus showcase](Resources/read-me/menus-showcase.gif)
 
 ### 1️⃣ Create a Session
@@ -92,6 +93,8 @@ The game revolves around the **`session`** object, which stores all the informat
 
 ### 🔗 API
 
+As previously mentioned, the website is strongly centered around the **Truth or Dare** API
+
 **Endpoint:** `https://api.truthordarebot.xyz/v1/`  
 **Response:** 
 ```JSON
@@ -119,5 +122,7 @@ The game fetches questions dynamically from the **Truth or Dare API** based on t
    - If filters are set (`PG`, `PG13`, `R`), a **random filter** is applied by adding `?rating={randomFilter.key}` to the URL.
    
 2. **Handling the response** :
-  - If the session language is not English and the translation exists, it uses the translated question. If not, it retries **fetching a new question**.
-  - Displays the question in the UI prepended with the current player's name.
+   - If the session language is not English and the translation exists, it uses the translated question. If not, it retries **fetching a new question**.
+   - Displays the question in the UI prepended with the current player's name.
+
+<a href="https://truthordarebot.xyz/api" target="_blank" title="See the Truth or Dare API documentation">**API documentation**</a>
