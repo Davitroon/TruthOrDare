@@ -111,6 +111,8 @@ document.getElementById("create-session-form").addEventListener('submit', (event
         extraQuestions: extraQuestions,
         creationDate: new Date().toLocaleDateString('en-GB')
     }
+
+    //NOTE: Check what's happening with this line, sessions doesn't exist on this file?
     sessions.push(session);
     localStorage.setItem('sessions', JSON.stringify(sessions));
     selectedSesion = sessions.indexOf(session);
