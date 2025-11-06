@@ -7,7 +7,7 @@
 - [📝 Description](#-description "Learn more about the game's concept and purpose")
 - [⚙️ Installation](#️-installation "Instructions to install and run the project locally")
 - [🕹️ How to Play](#-how-to-play "Step-by-step guide on how to play the game")
-- [💾 Game Architecture](#-game-architecture "Understand the structure and logic behind the game")
+- [🔧 Game Architecture](#-game-architecture "Understand the structure and logic behind the game")
 - [🧠 Technologies](#-technologies "See which technologies were used to build the project")
 - [🔗 API](#-api "Information about the Truth or Dare API used in this project")
 
@@ -54,6 +54,28 @@ The **background color of the question** indicates its rating for easy identific
 ---
 
 ## 🔧 Game Architecture
+
+### 📂 Proyect Structure
+The game is built in the following folders and files:
+```bash
+.
+├── game.html
+├── index.html
+│
+├── CSS/
+│   ├── game-styles.css
+│   └── main-styles.css
+│
+├── JS/
+│   ├── form-scripts.js
+│   ├── game-scripts.js
+│   └── main-scripts.js
+│
+└── Resources/
+    └── (images and README files)
+```
+
+---
 
 ### 🗂️ Data Structure
 The game revolves around the **`session`** object, which stores all the information needed for a game session. Each session contains both descriptive data and operational data required for gameplay and API requests.
