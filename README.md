@@ -127,4 +127,4 @@ The game fetches questions dynamically from the **Truth or Dare API** based on t
    - If the session language is not English and the translation exists, it uses the translated question. If not, it retries **fetching a new question**.
    - Displays the question in the UI prepended with the current player's name.
 
-You can explore more in the <a href="https://truthordarebot.xyz/api" target="_blank" title="See the Truth or Dare API documentation">**API's documentation**</a>
+You can explore more in the [API documentation](https://docs.truthordarebot.xyz/api-docs "See the API documentation")
