@@ -5,10 +5,10 @@
 
 ## 📚 Table of Contents
 - [📝 Description](#-description "Learn more about the game's concept and purpose")
-- [🧠 Technologies](#-technologies "See which technologies were used to build the project")
 - [⚙️ Installation](#️-installation "Instructions to install and run the project locally")
 - [🕹️ How to Play](#-how-to-play "Step-by-step guide on how to play the game")
 - [💾 Game Architecture](#-game-architecture "Understand the structure and logic behind the game")
+- [🧠 Technologies](#-technologies "See which technologies were used to build the project")
 - [🔗 API](#-api "Information about the Truth or Dare API used in this project")
 
 ---
@@ -16,15 +16,6 @@
 ## 📝 Description
 The main requirement for this project was to use an existing API and base the web around it.  
 After finding one related to the well-known **Truth or Dare** game, I decided it would be a great idea to develop a **fun, social game** to play with friends or family — directly from the browser!
-
----
-
-## 🧠 Technologies
-This project was built using:
-- 🌐 **HTML5** — Structure  
-- 🎨 **CSS3** — Styling and layout  
-- ⚙️ **JavaScript (ES6)** — Logic and interactivity  
-- 💾 **GitHub** — Version control and hosting  
 
 ---
 
@@ -91,6 +82,17 @@ The game revolves around the **`session`** object, which stores all the informat
 
 ---
 
+## 🧠 Technologies
+
+| Technology | Description |
+|-------------|-------------|
+| ![HTML5](https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white) | 🌐 Defines the structure and layout of the web application. |
+| ![CSS3](https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white) | 🎨 Handles the styling, layout, and visual presentation. |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black) | ⚙️ Adds logic, interactivity, and dynamic behavior to the app. |
+
+
+---
+
 ### 🔗 API
 
 As previously mentioned, the website is strongly centered around the **Truth or Dare** API
@@ -125,4 +127,4 @@ The game fetches questions dynamically from the **Truth or Dare API** based on t
    - If the session language is not English and the translation exists, it uses the translated question. If not, it retries **fetching a new question**.
    - Displays the question in the UI prepended with the current player's name.
 
-<a href="https://truthordarebot.xyz/api" target="_blank" title="See the Truth or Dare API documentation">**API documentation**</a>
+You can explore more in the <a href="https://truthordarebot.xyz/api" target="_blank" title="See the Truth or Dare API documentation">**API's documentation**</a>
