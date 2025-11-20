@@ -1,5 +1,14 @@
-# Truth or Dare  
-**A fun and simple web game developed as part of my Higher Degree in Web Development.**
+<h1 align="center">🎲 Truth or Dare</h1>
+
+<p align="center">
+A fun and simple web game developed as part of my Higher Degree in Web Development.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript" />
+</p>
 
 ---
 
