@@ -1,4 +1,4 @@
-<h1 align="center">🎲 Truth or Dare</h1>
+<h1 align="center">Truth or Dare</h1>
 
 <p align="center">
 A fun and simple web game developed as part of my Higher Degree in Web Development.
