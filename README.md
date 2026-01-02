@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white" alt="HTML" />
+  <img src="https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css&logoColor=white" alt="CSS" />
+  <img src="https://img.shields.io/badge/JavaScript-Logic-F7DF1E?logo=javascript&logoColor=white" alt="JavaScript" />
 </p>
 
 ---
@@ -117,9 +117,9 @@ The game revolves around the **`session`** object, which stores all the informat
 
 | Technology | Description |
 |-------------|-------------|
-| ![HTML5](https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white) | Defines the structure and layout of the web. |
-| ![CSS3](https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white) | Handles the styling, layout, and visual presentation. |
-| ![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black) | Adds logic, interactivity, and dynamic behavior to the app. |
+| ![HTML](https://img.shields.io/badge/HTML-Structure-E34F26?logo=html5&logoColor=white) | Defines the structure and layout of the web. |
+| ![CSS](https://img.shields.io/badge/CSS-Styling-1572B6?logo=css&logoColor=white) | Handles the styling, layout, and visual presentation. |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-Logic-F7DF1E?logo=javascript&logoColor=white) | Adds logic, interactivity, and dynamic behavior to the app. |
 
 
 ---
