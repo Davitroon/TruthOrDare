@@ -159,3 +159,14 @@ The game fetches questions dynamically from the **Truth or Dare API** based on t
    - Displays the question in the UI prepended with the current player's name.
 
 You can explore more in the [API documentation](https://docs.truthordarebot.xyz/api-docs "See the API documentation")
+
+---
+
+<div align="center">
+<sub>
+
+This project is licensed under the MIT License.  
+Copyright (c) 2025 Davitroon
+
+</sub>
+</div>
