@@ -166,6 +166,7 @@ You can explore more in the [API documentation](https://docs.truthordarebot.xyz/
 <sub>
 
 This project is licensed under the MIT License.  
+
 Copyright (c) 2025 Davitroon
 
 </sub>
